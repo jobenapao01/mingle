@@ -1,6 +1,6 @@
 import { validateRequest } from '@/auth';
-import { Navbar } from '@/components';
-import MenuBar from '@/components/navigation/MenuBar';
+import { Navbar, MenuBar } from '@/components';
+
 import SessionProvider from '@/providers/SessionProvider';
 import { redirect } from 'next/navigation';
 

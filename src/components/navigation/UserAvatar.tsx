@@ -4,11 +4,12 @@ import { CircleUserRound } from 'lucide-react';
 
 type UserAvatarProps = {
 	avatarUrl?: string | null | undefined;
+	className?: string;
 };
 
-const UserAvatar = ({ avatarUrl }: UserAvatarProps) => {
+const UserAvatar = ({ avatarUrl, className }: UserAvatarProps) => {
 	return (
-		<Avatar>
+		<Avatar className={cn(className)}>
 			<AvatarImage
 				src={avatarUrl || ''}
 				alt='User avatar'
