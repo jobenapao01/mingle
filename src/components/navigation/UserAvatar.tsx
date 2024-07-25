@@ -14,7 +14,7 @@ const UserAvatar = ({ avatarUrl }: UserAvatarProps) => {
 				alt='User avatar'
 			/>
 			<AvatarFallback>
-				<CircleUserRound className='text-muted-foreground size-full' />
+				<CircleUserRound className='text-muted-foreground size-full dark:text-gray-500' />
 			</AvatarFallback>
 		</Avatar>
 	);
