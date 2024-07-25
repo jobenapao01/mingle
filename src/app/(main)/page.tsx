@@ -1,5 +1,9 @@
 import Image from 'next/image';
 
 export default function Home() {
-	return <main>main</main>;
+	return (
+		<main className='w-full'>
+			<div className='w-full '>main</div>
+		</main>
+	);
 }
