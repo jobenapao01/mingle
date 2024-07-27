@@ -1,8 +1,7 @@
-import { PostEditor } from '@/components';
-import Post from '@/components/posts/Post';
+import { PostEditor, Post } from '@/components';
 import prisma from '@/lib/prisma';
 import { postDataInclude } from '@/types';
-import { Metadata } from 'next';
+import TrendingSidebar from './_components/TrendingSidebar';
 
 export default async function Home() {
 	const posts = await prisma.post.findMany({
@@ -12,7 +11,7 @@ export default async function Home() {
 		},
 	});
 	return (
-		<main className='w-full min-w-0'>
+		<main className='w-full min-w-0 flex ga-5'>
 			<div className='w-full min-w-0 space-y-5'>
 				<PostEditor />
 				{posts.map((post) => (
@@ -22,6 +21,7 @@ export default async function Home() {
 					/>
 				))}
 			</div>
+			<TrendingSidebar />
 		</main>
 	);
 }
