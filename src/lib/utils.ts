@@ -21,3 +21,11 @@ export function formatRelativeDate(from: Date) {
 		return formatDate(from, 'MMM d, yyy');
 	}
 }
+
+//format for large numbers 1000 format to 1k
+export function formatNumber(n: number): string {
+	return Intl.NumberFormat('en-US', {
+		notation: 'compact',
+		maximumFractionDigits: 1,
+	}).format(n);
+}
