@@ -16,15 +16,16 @@ import {
 import { UserAvatar } from '@/components';
 import { Check, CircleUserRound, LogOutIcon, Monitor, Moon, Sun } from 'lucide-react';
 import Link from 'next/link';
-import { logout } from '@/app/(auth)/actions';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
+import { useLogout } from '@/services/mutations/auth';
 
 type UserButtonProps = {
 	className?: string;
 };
 
 const UserButton = ({ className }: UserButtonProps) => {
+	const { mutate: logout } = useLogout();
 	const { user } = useSession();
 
 	const { theme, setTheme } = useTheme();

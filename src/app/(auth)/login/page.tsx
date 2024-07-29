@@ -20,7 +20,7 @@ const LoginPage = () => {
 							href='/sign-up'
 							className='block text-center hover:underline'
 						>
-							Don&apos;t have an account? Sign up
+							Don&apos;t have an account? <span className='text-base text-primary'>Sign up</span>
 						</Link>
 					</div>
 				</div>

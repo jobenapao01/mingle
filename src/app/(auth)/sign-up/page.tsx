@@ -28,7 +28,7 @@ const SignUpPage = ({}: Props) => {
 							href='/login'
 							className='block text-center hover:underline'
 						>
-							Already have an account? Log in
+							Already have an account? <span className='text-base text-primary'>Log in</span>
 						</Link>
 					</div>
 				</div>
