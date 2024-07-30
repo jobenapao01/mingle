@@ -29,7 +29,7 @@ const SearchField = ({}: Props) => {
 				<Input
 					name='search'
 					placeholder='Search'
-					className='pe-10'
+					className='pe-10 bg-primary-foreground border dark:border-none shadow-md'
 				/>
 				<SearchIcon className='absolute right-3 top-1/2 size-5 -translate-y-1/2 transform text-muted-foreground' />
 			</div>

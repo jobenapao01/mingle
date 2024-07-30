@@ -3,6 +3,7 @@ import { UserAvatar } from '@/components';
 import { Button } from '@/components/ui/button';
 import prisma from '@/lib/prisma';
 import { userDataSelect } from '@/types';
+import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
 const WhoToFollow = async () => {
@@ -21,7 +22,7 @@ const WhoToFollow = async () => {
 	});
 
 	return (
-		<div className='space-y-5 rounded-2xl bg-primary-foreground p-5 shadow-md'>
+		<div className='space-y-5 rounded-2xl bg-primary-foreground p-5 shadow-md border dark:border-none'>
 			<div className='text-xl font-bold'>Who to follow</div>
 			{usersToFollow.map((user) => (
 				<div
@@ -43,7 +44,10 @@ const WhoToFollow = async () => {
 							<p className='line-clamp-1 break-all text-muted-foreground'>@{user.username}</p>
 						</div>
 					</Link>
-					<Button>Follow</Button>
+					<Button>
+						<Plus className='size-4 mr-2' />
+						Follow
+					</Button>
 				</div>
 			))}
 		</div>

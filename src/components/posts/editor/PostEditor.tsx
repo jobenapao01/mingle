@@ -50,7 +50,7 @@ const PostEditor = () => {
 				/>
 				<EditorContent
 					editor={editor}
-					className='w-full max-h-[20rem] overflow-y-auto bg-background rounded-2xl px-5 py-3 border border-gray-400'
+					className='w-full max-h-[20rem] overflow-y-auto bg-primary-foreground rounded-2xl px-5 py-3 border border-gray-400'
 				/>
 			</div>
 
