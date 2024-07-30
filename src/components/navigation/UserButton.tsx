@@ -100,9 +100,7 @@ const UserButton = ({ className }: UserButtonProps) => {
 
 				<DropdownMenuItem
 					className='flex gap-x-2 cursor-pointer'
-					onClick={() => {
-						logout();
-					}}
+					onClick={() => logout()}
 				>
 					<LogOutIcon className='mr-2 size-4' /> Logout
 				</DropdownMenuItem>
