@@ -1,7 +1,12 @@
-export const getForYouPost = async () => {
-	const res = await fetch('/api/posts/for-you');
+import api from '@/services/axios';
+import { PostsPage } from '@/types';
 
-	if (!res.ok) throw new Error(`Request failed with status code: ${res.status}`);
+export const getForYouPost = async ({ pageParam }: { pageParam: string | null }) => {
+	const { data } = await api.get<PostsPage>('/api/posts/for-you', {
+		params: {
+			cursor: pageParam,
+		},
+	});
 
-	return res.json();
+	return data;
 };
