@@ -30,7 +30,7 @@ const TrendingTopics = async () => {
 	const trendingTopics = await getTrendingTopics();
 
 	return (
-		<div className='space-y-5 rounded-2xl bg-primary-foreground p-5 shadow-sm'>
+		<div className='space-y-5 rounded-2xl bg-primary-foreground p-5 shadow-md border dark:border-none'>
 			<div className='text-xl font-bold'>Trending Topics</div>
 			{trendingTopics.map(({ hashtag, count }) => {
 				const title = hashtag.split('#')[1];
