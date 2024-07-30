@@ -3,7 +3,6 @@
 import { useForYouFeed } from '@/services/queries/posts';
 import Post from '../Post';
 import { Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import InfiniteScrollingContainer from '@/components/InfiniteScrollingContainer';
 import PostsSkeleton from '../PostsSkeleton';
 
