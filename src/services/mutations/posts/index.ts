@@ -1,6 +1,8 @@
+import { deletePost } from '@/components/posts/action';
 import { submitPost } from '@/components/posts/editor/actions';
 import { PostsPage } from '@/types';
 import { InfiniteData, QueryFilters, useMutation, useQueryClient } from '@tanstack/react-query';
+import { usePathname, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 export const useSubmitPost = () => {
@@ -31,6 +33,7 @@ export const useSubmitPost = () => {
 				}
 			});
 
+			//Invalidate query when post feed is empty
 			queryClient.invalidateQueries({
 				queryKey: queryFilter.queryKey,
 				predicate(query) {
@@ -43,6 +46,42 @@ export const useSubmitPost = () => {
 		onError: (error) => {
 			console.log(error);
 			toast.error('Failed to post. Please try again');
+		},
+	});
+};
+
+export const useDeletePost = () => {
+	const queryClient = useQueryClient();
+	const router = useRouter();
+	const pathname = usePathname();
+
+	return useMutation({
+		mutationFn: deletePost,
+		onSuccess: async (deletedPost) => {
+			const queryFilter: QueryFilters = { queryKey: ['post-feed'] };
+
+			await queryClient.cancelQueries(queryFilter);
+
+			queryClient.setQueriesData<InfiniteData<PostsPage, string | null>>(queryFilter, (oldData) => {
+				if (!oldData) return;
+
+				return {
+					pageParams: oldData.pageParams,
+					pages: oldData.pages.map((page) => ({
+						nextCursor: page.nextCursor,
+						posts: page.posts.filter((p) => p.id !== deletedPost?.id),
+					})),
+				};
+			});
+
+			toast.success('Post deleted.');
+
+			if (pathname === `/posts/${deletedPost?.id}`)
+				return router.push(`/users/${deletedPost?.user.username}`);
+		},
+		onError: (error) => {
+			console.log(error);
+			toast.error('Failed to delete post. Please try again later.');
 		},
 	});
 };
