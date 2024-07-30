@@ -10,11 +10,11 @@ export function formatRelativeDate(from: Date) {
 	const currentDate = new Date();
 
 	//check if within 24 hours
-	if (currentDate.getTime() - from.getTime() < 24 * 60 * 60 * 1000) {
+	if (currentDate.getTime() - new Date(from).getTime() < 24 * 60 * 60 * 1000) {
 		return formatDistanceToNowStrict(from, { addSuffix: true });
 	} else {
 		//check if 1year
-		if (currentDate.getFullYear() === from.getFullYear()) {
+		if (currentDate.getFullYear() === new Date(from).getFullYear()) {
 			return formatDate(from, 'MMM d');
 		}
 

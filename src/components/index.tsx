@@ -12,3 +12,4 @@ export { default as Post } from './posts/Post';
 export { default as PostEditor } from './posts/editor/PostEditor';
 export { default as ForYouFeed } from './posts/feed/ForYouFeed';
 export { default as ClientOnly } from './ClientOnly';
+export { default as InfiniteScrollingContainer } from './InfiniteScrollingContainer';

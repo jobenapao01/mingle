@@ -1,10 +1,12 @@
 import { getForYouPost } from '@/services/api/posts';
 import { PostData } from '@/types';
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 export const useForYouFeed = () => {
-	return useQuery<PostData[]>({
+	return useInfiniteQuery({
 		queryKey: ['post-feed', 'for-you'],
 		queryFn: getForYouPost,
+		initialPageParam: null as string | null,
+		getNextPageParam: (lastPage) => lastPage.nextCursor,
 	});
 };
