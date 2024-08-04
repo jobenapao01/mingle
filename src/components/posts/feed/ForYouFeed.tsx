@@ -1,6 +1,6 @@
 'use client';
 
-import { useForYouFeed } from '@/services/queries/posts';
+import { useForYouFeedQuery } from '@/services/queries/posts';
 import Post from '../Post';
 import { Loader2 } from 'lucide-react';
 import InfiniteScrollingContainer from '@/components/InfiniteScrollingContainer';
@@ -16,7 +16,7 @@ const ForYouFeed = () => {
 		isFetching,
 		isFetchingNextPage,
 		isSuccess,
-	} = useForYouFeed();
+	} = useForYouFeedQuery();
 
 	const posts = data?.pages.flatMap((page) => page.posts) || [];
 	console.log(posts);
