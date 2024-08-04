@@ -10,3 +10,13 @@ export const getForYouPost = async ({ pageParam }: { pageParam: string | null })
 
 	return data;
 };
+
+export const getFollowingPost = async ({ pageParam }: { pageParam: string | null }) => {
+	const { data } = await api.get<PostsPage>(`/api/posts/following`, {
+		params: {
+			cursor: pageParam,
+		},
+	});
+
+	return data;
+};
