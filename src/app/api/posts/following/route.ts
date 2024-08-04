@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function GET(req: NextRequest) {
 	try {
 		const cursor = req.nextUrl.searchParams.get('cursor') || undefined;
-
 		const pageSize = 10;
 
 		const { user } = await validateRequest();
@@ -13,16 +12,21 @@ export async function GET(req: NextRequest) {
 		if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
 		const posts = await prisma?.post.findMany({
-			include: getPostDataInclude(user.id),
+			where: {
+				user: {
+					followers: {
+						some: {
+							followerId: user.id,
+						},
+					},
+				},
+			},
 			orderBy: {
 				createAt: 'desc',
 			},
 			take: pageSize + 1,
-			cursor: cursor
-				? {
-						id: cursor,
-				  }
-				: undefined,
+			cursor: cursor ? { id: cursor } : undefined,
+			include: getPostDataInclude(user.id),
 		});
 
 		if (posts === undefined) return;

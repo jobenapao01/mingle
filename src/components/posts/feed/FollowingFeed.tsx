@@ -1,12 +1,12 @@
 'use client';
 
-import { useForYouFeedQuery } from '@/services/queries/posts';
+import { useFollowingFeedQuery } from '@/services/queries/posts';
 import Post from '../Post';
 import { Loader2 } from 'lucide-react';
 import InfiniteScrollingContainer from '@/components/InfiniteScrollingContainer';
 import PostsSkeleton from '../PostsSkeleton';
 
-const ForYouFeed = () => {
+const FollowingFeed = () => {
 	const {
 		data,
 		isError,
@@ -16,7 +16,7 @@ const ForYouFeed = () => {
 		isFetching,
 		isFetchingNextPage,
 		isSuccess,
-	} = useForYouFeedQuery();
+	} = useFollowingFeedQuery();
 
 	const posts = data?.pages.flatMap((page) => page.posts) || [];
 	console.log(posts);
@@ -26,7 +26,11 @@ const ForYouFeed = () => {
 	}
 
 	if (isSuccess && !posts.length && !hasNextPage) {
-		return <p className='text-center text-muted-foreground'>No on has posted anything yet.</p>;
+		return (
+			<p className='text-center text-muted-foreground'>
+				No posts found. Start following people to see their posts
+			</p>
+		);
 	}
 
 	if (isError) {
@@ -51,4 +55,4 @@ const ForYouFeed = () => {
 	);
 };
 
-export default ForYouFeed;
+export default FollowingFeed;

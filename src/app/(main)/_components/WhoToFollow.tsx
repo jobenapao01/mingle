@@ -1,9 +1,8 @@
 import { validateRequest } from '@/auth';
 import { UserAvatar } from '@/components';
-import { Button } from '@/components/ui/button';
+import FollowButton from '@/components/users/FollowButton';
 import prisma from '@/lib/prisma';
-import { userDataSelect } from '@/types';
-import { Plus } from 'lucide-react';
+import { getUserDataSelect } from '@/types';
 import Link from 'next/link';
 
 const WhoToFollow = async () => {
@@ -16,8 +15,13 @@ const WhoToFollow = async () => {
 			NOT: {
 				id: user?.id,
 			},
+			followers: {
+				none: {
+					followerId: user.id,
+				},
+			},
 		},
-		select: userDataSelect,
+		select: getUserDataSelect(user.id),
 		take: 5,
 	});
 
@@ -30,7 +34,7 @@ const WhoToFollow = async () => {
 					className='flex items-center justify-between gap-3'
 				>
 					<Link
-						href={user.username}
+						href={`/users/${user.username}`}
 						className='flex items-center gap-3'
 					>
 						<UserAvatar
@@ -44,10 +48,13 @@ const WhoToFollow = async () => {
 							<p className='line-clamp-1 break-all text-muted-foreground'>@{user.username}</p>
 						</div>
 					</Link>
-					<Button>
-						<Plus className='size-4 mr-2' />
-						Follow
-					</Button>
+					<FollowButton
+						userId={user.id}
+						initialState={{
+							followers: user._count.followers,
+							isFollowedByUser: user.followers.some(({ followerId }) => followerId === user.id),
+						}}
+					/>
 				</div>
 			))}
 		</div>
