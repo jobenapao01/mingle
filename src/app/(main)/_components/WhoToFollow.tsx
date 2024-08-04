@@ -1,6 +1,5 @@
 import { validateRequest } from '@/auth';
-import { UserAvatar } from '@/components';
-import FollowButton from '@/components/users/FollowButton';
+import { FollowButton, UserAvatar } from '@/components';
 import prisma from '@/lib/prisma';
 import { getUserDataSelect } from '@/types';
 import Link from 'next/link';
