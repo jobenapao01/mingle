@@ -20,3 +20,18 @@ export const getFollowingPost = async ({ pageParam }: { pageParam: string | null
 
 	return data;
 };
+
+export const getUserPosts = async ({
+	userId,
+	pageParam,
+}: {
+	userId: string;
+	pageParam: string | null;
+}) => {
+	const { data } = await api.get<PostsPage>(`/api/users/${userId}/posts`, {
+		params: {
+			cursor: pageParam,
+		},
+	});
+	return data;
+};
