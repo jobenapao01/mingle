@@ -1,4 +1,4 @@
-import { FollowButton, FollowerCount, UserAvatar } from '@/components';
+import { FollowButton, FollowerCount, Linkify, UserAvatar } from '@/components';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { formatNumber } from '@/lib/utils';
@@ -52,7 +52,9 @@ const UserProfile = async ({ loggedInUserId, user }: UserProfileProps) => {
 			{user.bio && (
 				<>
 					<Separator />
-					<div className='whitespace-pre-line overflow-hidden break-words'>{user.bio}</div>
+					<Linkify>
+						<div className='whitespace-pre-line overflow-hidden break-words'>{user.bio}</div>
+					</Linkify>
 				</>
 			)}
 		</div>

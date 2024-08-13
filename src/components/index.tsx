@@ -15,3 +15,5 @@ export { default as ClientOnly } from './ClientOnly';
 export { default as InfiniteScrollingContainer } from './InfiniteScrollingContainer';
 export { default as FollowButton } from './users/FollowButton';
 export { default as FollowerCount } from './users/FollowerCount';
+export { default as UserTooltip } from './users/UserTooltip';
+export { default as Linkify } from './Linkify';
